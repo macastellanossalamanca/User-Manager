@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct UsersManagerApp: App {
+    @StateObject var coordinator = AppCoordinator()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            coordinator.start()
         }
     }
 }

@@ -94,4 +94,8 @@ class DatabaseService: DataBaseServiceProtocol {
             os_log("Failed to delete users: \(error.localizedDescription)")
         }
     }
+    
+    func doesDBHaveUsersStored() -> Bool {
+        return !fetchUsers().isEmpty
+    }
 }

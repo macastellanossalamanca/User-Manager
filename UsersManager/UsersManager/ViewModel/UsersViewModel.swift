@@ -11,6 +11,7 @@ import os
 @MainActor
 class UsersViewModel: ObservableObject {
     @Published var users: [User] = []
+    var deletedUsers: [User] = []
     private let apiService = APIService.shared
     private let dbService = DatabaseService.shared
     
@@ -23,9 +24,13 @@ class UsersViewModel: ObservableObject {
     func loadUsers() async {
         do {
             os_log("Loading users...", log: .businessLogic)
-            let fetchedUsers = try await apiService.fetchUsers()
-            dbService.deleteAll()
-            dbService.saveUsers(fetchedUsers)
+            var fetchedUsers = try await apiService.fetchUsers()
+            if !dbService.doesDBHaveUsersStored() {
+                dbService.saveUsers(fetchedUsers)
+            }
+            for u in deletedUsers {
+                fetchedUsers.removeAll { $0.id == u.id}
+            }
             self.users = fetchedUsers
             os_log("Loaded users successfully", log: .businessLogic)
         } catch {
@@ -39,10 +44,12 @@ class UsersViewModel: ObservableObject {
             os_log("Deleting user", log: .businessLogic)
             var fetchedUsers = try await apiService.fetchUsers()
             fetchedUsers.removeAll {$0.id == user.id}
-            dbService.saveUsers(fetchedUsers)
+            dbService.deleteUser(user)
             self.users = fetchedUsers
+            deletedUsers.append(user)
             os_log("User deleted locally and from API", log: .businessLogic)
         } catch {
+            dbService.deleteUser(user)
             self.users = dbService.fetchUsers()
         }
     }
