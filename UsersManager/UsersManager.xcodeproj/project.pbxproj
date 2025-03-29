@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B656395C2D98504600907682 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B656395B2D98504600907682 /* Alamofire */; };
+		B65639622D985C0100907682 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B65639612D985C0100907682 /* RealmSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B656392B2D98415500907682 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B65639622D985C0100907682 /* RealmSwift in Frameworks */,
+				B656395C2D98504600907682 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = UsersManager;
 			packageProductDependencies = (
+				B656395B2D98504600907682 /* Alamofire */,
+				B65639612D985C0100907682 /* RealmSwift */,
 			);
 			productName = UsersManager;
 			productReference = B656391A2D98415200907682 /* UsersManager.app */;
@@ -195,6 +204,10 @@
 			);
 			mainGroup = B65639112D98415200907682;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B656395A2D98504600907682 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B65639602D985C0100907682 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B656391B2D98415200907682 /* Products */;
 			projectDirPath = "";
@@ -321,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -378,7 +391,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -552,6 +565,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B656395A2D98504600907682 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		B65639602D985C0100907682 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B656395B2D98504600907682 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B656395A2D98504600907682 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		B65639612D985C0100907682 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B65639602D985C0100907682 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B65639122D98415200907682 /* Project object */;
 }

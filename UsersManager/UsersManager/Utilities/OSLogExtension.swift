@@ -11,6 +11,7 @@ import OSLog
 extension OSLog {
     private static var subsystem = Bundle.main.bundleIdentifier!
 
+    static let dataAccess = OSLog(subsystem: subsystem, category: "DataAccess")
     static let navigation = OSLog(subsystem: subsystem, category: "Navigation")
     static let businessLogic = OSLog(subsystem: subsystem, category: "BusinessLogic")
     static let view = OSLog(subsystem: subsystem, category: "View")

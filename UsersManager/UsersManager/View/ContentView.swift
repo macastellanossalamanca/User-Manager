@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel = UsersViewModel()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ScrollView {
+            LazyVGrid(columns: [GridItem()], spacing: 10) {
+                ForEach(viewModel.users, id: \.id) { user in
+                    VStack {
+                        Text(user.name)
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 
