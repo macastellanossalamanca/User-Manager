@@ -35,13 +35,11 @@ class DatabaseService: DataBaseServiceProtocol {
     func saveUsers(_ users: [User]) {
         guard let realm = realm else { return }
         let realmUsers = users.map { $0.toRealm() }
-        do {
-            try realm.write {
-                realm.add(realmUsers)
+        for realmUser in realmUsers {
+            // Si el usuario NO está en la base de datos, lo agregamos
+            if realm.object(ofType: UserRealm.self, forPrimaryKey: realmUser.id) == nil {
+                addUser(realmUser.toUser())
             }
-            os_log("Users saved successfully. Count: \(users.count)")
-        } catch {
-            os_log("Failed to save users: \(error.localizedDescription)")
         }
     }
     
@@ -65,7 +63,7 @@ class DatabaseService: DataBaseServiceProtocol {
             os_log("Failed to add user: \(error.localizedDescription)")
         }
     }
-
+    
     func deleteUser(_ user: User) {
         guard let realm = realm else { return }
         let realmUser = user.toRealm()
@@ -74,7 +72,7 @@ class DatabaseService: DataBaseServiceProtocol {
                 try realm.write {
                     realm.delete(userToDelete)
                 }
-                os_log("User deleted: \(userToDelete.name) [ID: \(userToDelete.id)]")
+                os_log("User deleted")
             } else {
                 os_log("User not found for deletion")
             }
@@ -92,6 +90,25 @@ class DatabaseService: DataBaseServiceProtocol {
             os_log("All users deleted")
         } catch {
             os_log("Failed to delete users: \(error.localizedDescription)")
+        }
+    }
+    
+    func updateUser(user: User, newName: String, newEmail: String) {
+        do {
+            let realm = try Realm()
+            let realmUser = user.toRealm()
+            // Buscar el usuario por ID
+            if let user = realm.object(ofType: UserRealm.self, forPrimaryKey: realmUser.id) {
+                try realm.write {
+                    user.name = newName
+                    user.email = newEmail
+                    os_log("✅ Usuario actualizado correctamente")
+                }
+            } else {
+                os_log("⚠️ Usuario no encontrado")
+            }
+        } catch {
+            os_log("❌ Error al actualizar el usuario: \(error.localizedDescription)")
         }
     }
     

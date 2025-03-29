@@ -10,37 +10,39 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var viewModel = UsersViewModel()
     @ObservedObject var coordinator: AppCoordinator
+
     var body: some View {
         NavigationView {
-            List(viewModel.users) { user in
-                NavigationLink(destination: UserDetailView(user: user)) {
-                    VStack(alignment: .leading) {
-                        Text(user.name).font(.headline)
-                        Text("Teléfono: \(user.phone)").font(.subheadline)
-                        Text("Email: \(user.email)").font(.body)
+            List {
+                ForEach(viewModel.users) { user in
+                    NavigationLink(destination: UserDetailView(user: user, viewModel: viewModel)) {
+                        VStack(alignment: .leading) {
+                            Text(user.name).font(.headline)
+                            Text("Teléfono: \(user.phone)").font(.subheadline)
+                            Text("Email: \(user.email)").font(.body)
+                        }
                     }
                 }
+                .onDelete(perform: deleteUser) // Eliminar usuario al deslizar
             }
             .navigationTitle("Usuarios")
+            .toolbar {
+                EditButton() // Botón para habilitar el modo edición
+            }
+        }
+    }
+
+    // Método para eliminar el usuario
+    private func deleteUser(at offsets: IndexSet) {
+        for index in offsets {
+            let user = viewModel.users[index]
+            viewModel.deleteUser(user)
         }
     }
 }
 
 
-struct UserDetailView: View {
-    let user: User
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Nombre: \(user.name)").font(.title2).bold()
-            Text("Teléfono: \(user.phone)").font(.body)
-            Text("Email: \(user.email)").font(.body)
-            Spacer()
-        }
-        .padding()
-        .navigationTitle("Detalles del Usuario")
-    }
-}
+
 
 #Preview {
     ContentView(coordinator: AppCoordinator())
