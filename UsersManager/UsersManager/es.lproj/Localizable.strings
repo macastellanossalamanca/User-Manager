@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  UsersManager
+
+  Created by Sandra Salamanca on 29/03/25.
+  
+*/
+
+"Users" = "Lista de Usuarios";
+"save_changes" = "Guardar Cambios";
+"Cancel" = "Cancelar";
+"Phone" = "Teléfono: %@!";
+"Email" = "Correo: %@!";
+"EmailPlaceHolder" = "Correo Electrónico";
+"City" = "Ciudad: %@!";
+"Add" = "Añadir";
+"Name" = "Nombre";
+"PhonePlaceHolder" = "Teléfono";
+"Latitude" = "Latitud: %@!";
+"Longitude" = "Longitud: %@!";
+"GetLocation" = "Obtener Ubicación Actual";
+"AddUser" = "Añadir Usuario";
+"EmptyNameError" = "⚠️ El nombre no puede estar vacío.";
+"InvalidEmailError" = "⚠️ El correo electrónico no es válido.";
+"User" = "Usuario: %@!";
+"Address" = "📍 Dirección";
+"Street" = "Calle: %@!";
+"Suite" = "Suite: %@!";
+"Postal Code" = "Código Postal: %@!";
+"Company" = "🏢 Empresa";
+"CompoundName" = "Nombre: %@!";
+"Phrase" = "Frase: %@!";
+"BS" = "BS: %@!";

@@ -20,15 +20,15 @@ struct ContentView: View {
                     NavigationLink(destination: UserDetailView(user: user, viewModel: viewModel)) {
                         VStack(alignment: .leading) {
                             Text(user.name).font(.headline)
-                            Text("Teléfono: \(user.phone)").font(.subheadline)
-                            Text("Email: \(user.email)").font(.body)
-                            Text("Ciudad: \(user.address.city)").font(.body)
+                            Text(LocalizedStringKey("Phone \(user.phone)")).font(.body)
+                            Text(LocalizedStringKey("Email \(user.email)")).font(.body)
+                            Text(LocalizedStringKey("City \(user.address.city)")).font(.body)
                         }
                     }
                 }
                 .onDelete(perform: deleteUser)
             }
-            .navigationTitle("Usuarios")
+            .navigationTitle(LocalizedStringKey("Users"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()
@@ -67,15 +67,15 @@ struct AddUserView: View {
     var body: some View {
         NavigationView {
             Form {
-                TextField("Nombre", text: $name)
-                TextField("Email", text: $email)
+                TextField(LocalizedStringKey("Name"), text: $name)
+                TextField(LocalizedStringKey("EmailPlaceHolder"), text: $email)
                     .keyboardType(.emailAddress)
-                TextField("Teléfono", text: $phone)
+                TextField(LocalizedStringKey("PhonePlaceHolder"), text: $phone)
                     .keyboardType(.phonePad)
 
                 if !latitude.isEmpty && !longitude.isEmpty {
-                    Text("Latitud: \(latitude)")
-                    Text("Longitud: \(longitude)")
+                    Text(LocalizedStringKey("Latitud \(latitude)"))
+                    Text(LocalizedStringKey("Longitud \(longitude)"))
                 }
 
                 if !errorMessage.isEmpty {
@@ -88,19 +88,19 @@ struct AddUserView: View {
                     if isLoadingLocation {
                         ProgressView()
                     } else {
-                        Text("Obtener Ubicación Actual")
+                        Text(LocalizedStringKey("GetLocation"))
                     }
                 }
             }
-            .navigationTitle("Añadir Usuario")
+            .navigationTitle(LocalizedStringKey("AddUser"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") {
+                    Button(LocalizedStringKey("Cancel")) {
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Guardar") {
+                    Button(LocalizedStringKey("save_changes")) {
                         if validateInputs() {
                             let newUser = User(id: UUID().hashValue, name: name, username: name, email: email, address: Address(street: "", suite: "", city: "", zipcode: "", geo: Geo(lat: latitude, lng: longitude)), phone: phone, website: "", company: Company(name: "", catchPhrase: "", bs: ""))
                             viewModel.addUser(newUser)
@@ -115,12 +115,12 @@ struct AddUserView: View {
 
     private func validateInputs() -> Bool {
         guard InputValidator.isValidName(name) else {
-            errorMessage = "El nombre no puede estar vacío."
+            errorMessage = NSLocalizedString("EmptyNameError", comment: "")
             return false
         }
 
         guard InputValidator.isValidEmail(email) else {
-            errorMessage = "El correo no es válido."
+            errorMessage = NSLocalizedString("InvalidEmailError", comment: "")
             return false
         }
 
@@ -130,7 +130,6 @@ struct AddUserView: View {
 
     private func getLocation() {
         isLoadingLocation = true
-        LocationManager.shared.requestLocationPermissions()
         LocationManager.shared.getCurrentLocation { result in
             switch result {
             case .success(let location):

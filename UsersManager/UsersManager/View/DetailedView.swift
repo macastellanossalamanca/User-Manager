@@ -1,10 +1,3 @@
-//
-//  DetailedView.swift
-//  UsersManager
-//
-//  Created by Sandra Salamanca on 29/03/25.
-//
-
 import SwiftUI
 
 struct UserDetailView: View {
@@ -13,6 +6,7 @@ struct UserDetailView: View {
     
     @State private var editedName: String
     @State private var editedEmail: String
+    @Environment(\.presentationMode) var presentationMode
     
     init(user: User, viewModel: UsersViewModel) {
         self.user = user
@@ -26,7 +20,6 @@ struct UserDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
                     
-                    // Imagen del usuario (siempre el placeholder)
                     Image(systemName: "person.circle.fill")
                         .resizable()
                         .scaledToFit()
@@ -35,16 +28,15 @@ struct UserDetailView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                     
-                    // Información editable del usuario
                     Group {
-                        Text("Usuario: \(user.username)").font(.body)
+                        Text(LocalizedStringKey("User: \(user.username)")).font(.body)
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            TextField("Nombre", text: $editedName)
+                            TextField(LocalizedStringKey("Name"), text: $editedName)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .padding(.horizontal)
                             if !InputValidator.isValidName(editedName) {
-                                Text("⚠️ El nombre no puede estar vacío.")
+                                Text(LocalizedStringKey("EmptyNameError"))
                                     .font(.caption)
                                     .foregroundColor(.red)
                                     .padding(.horizontal)
@@ -57,40 +49,38 @@ struct UserDetailView: View {
                                 .padding(.horizontal)
                                 .keyboardType(.emailAddress)
                             if !InputValidator.isValidEmail(editedEmail) {
-                                Text("⚠️ El correo electrónico no es válido.")
+                                Text(LocalizedStringKey("InvalidEmailError"))
                                     .font(.caption)
                                     .foregroundColor(.red)
                                     .padding(.horizontal)
                             }
                         }
 
-                        Text("Teléfono: \(user.phone)").font(.body)
-                        Text("Sitio Web: \(user.website)").font(.body)
+                        Text("Phone: \(user.phone)").font(.body)
+                        Text("Web: \(user.website)").font(.body)
                     }
                     .padding(.horizontal)
 
                     Divider().padding(.vertical)
 
-                    // Información de la dirección
                     Group {
-                        Text("📍 Dirección").font(.title3).bold()
-                        Text("Calle: \(user.address.street)").font(.body)
-                        Text("Suite: \(user.address.suite)").font(.body)
-                        Text("Ciudad: \(user.address.city)").font(.body)
-                        Text("Código Postal: \(user.address.zipcode)").font(.body)
-                        Text("Latitud: \(user.address.geo.lat)").font(.body)
-                        Text("Longitud: \(user.address.geo.lng)").font(.body)
+                        Text(LocalizedStringKey("Address")).font(.title3).bold()
+                        Text("Street \(user.address.street)").font(.body)
+                        Text("Suite \(user.address.suite)").font(.body)
+                        Text("City \(user.address.city)").font(.body)
+                        Text("Postal Code \(user.address.zipcode)").font(.body)
+                        Text("Latitude \(user.address.geo.lat)").font(.body)
+                        Text("Longitude \(user.address.geo.lng)").font(.body)
                     }
                     .padding(.horizontal)
 
                     Divider().padding(.vertical)
 
-                    // Información de la empresa
                     Group {
-                        Text("🏢 Empresa").font(.title3).bold()
-                        Text("Nombre: \(user.company.name)").font(.body)
-                        Text("Frase: \(user.company.catchPhrase)").font(.body)
-                        Text("BS: \(user.company.bs)").font(.body)
+                        Text(LocalizedStringKey("Company")).font(.title3).bold()
+                        Text(LocalizedStringKey("CompoundName \(user.company.name)")).font(.body)
+                        Text(LocalizedStringKey("Phrase \(user.company.catchPhrase)")).font(.body)
+                        Text(LocalizedStringKey("BS \(user.company.bs)")).font(.body)
                     }
                     .padding(.horizontal)
 
@@ -99,11 +89,11 @@ struct UserDetailView: View {
                 .padding()
             }
 
-            // Botón para guardar cambios (al final)
             Button(action: {
                 viewModel.updateUser(user, newName: editedName, newEmail: editedEmail)
+                presentationMode.wrappedValue.dismiss() // Cerrar la vista al guardar
             }) {
-                Text("Guardar cambios")
+                Text(LocalizedStringKey("save_changes"))
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(isValidInput() ? Color.blue : Color.gray)
@@ -117,9 +107,7 @@ struct UserDetailView: View {
         .navigationTitle("\(user.name)")
     }
 
-    // Validación del formulario usando la clase estática
     private func isValidInput() -> Bool {
         return InputValidator.isValidName(editedName) && InputValidator.isValidEmail(editedEmail)
     }
 }
-

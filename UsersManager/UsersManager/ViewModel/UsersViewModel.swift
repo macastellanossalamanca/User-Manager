@@ -16,6 +16,7 @@ class UsersViewModel: ObservableObject {
     private let dbService = DatabaseService.shared
     
     init() {
+        LocationManager.shared.requestLocationPermissions()
         Task {
             await loadUsers()
         }
