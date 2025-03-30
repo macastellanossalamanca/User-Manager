@@ -29,7 +29,7 @@ struct UserDetailView: View {
                         .frame(maxWidth: .infinity)
                     
                     Group {
-                        Text(LocalizedStringKey("User: \(user.username)")).font(.body)
+                        Text(String(format: NSLocalizedString("User", comment: ""), user.username)).font(.body)
                         
                         VStack(alignment: .leading, spacing: 2) {
                             TextField(LocalizedStringKey("Name"), text: $editedName)
@@ -55,9 +55,10 @@ struct UserDetailView: View {
                                     .padding(.horizontal)
                             }
                         }
+                        
+                        Text(String(format: NSLocalizedString("Phone", comment: ""), user.phone)).font(.body)
+                        Text(String(format: NSLocalizedString("Web", comment: ""), user.website)).font(.body)
 
-                        Text("Phone: \(user.phone)").font(.body)
-                        Text("Web: \(user.website)").font(.body)
                     }
                     .padding(.horizontal)
 
@@ -65,12 +66,12 @@ struct UserDetailView: View {
 
                     Group {
                         Text(LocalizedStringKey("Address")).font(.title3).bold()
-                        Text("Street \(user.address.street)").font(.body)
-                        Text("Suite \(user.address.suite)").font(.body)
-                        Text("City \(user.address.city)").font(.body)
-                        Text("Postal Code \(user.address.zipcode)").font(.body)
-                        Text("Latitude \(user.address.geo.lat)").font(.body)
-                        Text("Longitude \(user.address.geo.lng)").font(.body)
+                        Text(String(format: NSLocalizedString("Street", comment: ""), user.address.street)).font(.body)
+                        Text(String(format: NSLocalizedString("Suite", comment: ""), user.address.suite)).font(.body)
+                        Text(String(format: NSLocalizedString("City", comment: ""), user.address.city)).font(.body)
+                        Text(String(format: NSLocalizedString("Postal Code", comment: ""), user.address.zipcode)).font(.body)
+                        Text(String(format: NSLocalizedString("Latitude", comment: ""), user.address.geo.lat)).font(.body)
+                        Text(String(format: NSLocalizedString("Longitude", comment: ""), user.address.geo.lng)).font(.body)
                     }
                     .padding(.horizontal)
 
@@ -78,9 +79,9 @@ struct UserDetailView: View {
 
                     Group {
                         Text(LocalizedStringKey("Company")).font(.title3).bold()
-                        Text(LocalizedStringKey("CompoundName \(user.company.name)")).font(.body)
-                        Text(LocalizedStringKey("Phrase \(user.company.catchPhrase)")).font(.body)
-                        Text(LocalizedStringKey("BS \(user.company.bs)")).font(.body)
+                        Text(String(format: NSLocalizedString("CompoundName", comment: ""), user.company.name)).font(.body)
+                        Text(String(format: NSLocalizedString("Phrase", comment: ""), user.company.catchPhrase)).font(.body)
+                        Text(String(format: NSLocalizedString("BS", comment: ""), user.company.bs)).font(.body)
                     }
                     .padding(.horizontal)
 

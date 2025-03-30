@@ -20,9 +20,10 @@ struct ContentView: View {
                     NavigationLink(destination: UserDetailView(user: user, viewModel: viewModel)) {
                         VStack(alignment: .leading) {
                             Text(user.name).font(.headline)
-                            Text(LocalizedStringKey("Phone \(user.phone)")).font(.body)
-                            Text(LocalizedStringKey("Email \(user.email)")).font(.body)
-                            Text(LocalizedStringKey("City \(user.address.city)")).font(.body)
+                            Text(String(format: NSLocalizedString("Phone", comment: ""), user.phone)).font(.body)
+                            Text(String(format: NSLocalizedString("Email", comment: ""), user.email)).font(.body)
+                            Text(String(format: NSLocalizedString("City", comment: ""), user.address.city)).font(.body)
+
                         }
                     }
                 }
@@ -74,8 +75,8 @@ struct AddUserView: View {
                     .keyboardType(.phonePad)
 
                 if !latitude.isEmpty && !longitude.isEmpty {
-                    Text(LocalizedStringKey("Latitud \(latitude)"))
-                    Text(LocalizedStringKey("Longitud \(longitude)"))
+                    Text(String(format: NSLocalizedString("Latitude", comment: ""), latitude))
+                    Text(String(format: NSLocalizedString("Longitude", comment: ""), longitude))
                 }
 
                 if !errorMessage.isEmpty {

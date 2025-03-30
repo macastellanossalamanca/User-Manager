@@ -23,6 +23,7 @@
 "EmptyNameError" = "⚠️ El nombre no puede estar vacío.";
 "InvalidEmailError" = "⚠️ El correo electrónico no es válido.";
 "User" = "Usuario: %@!";
+"Web" = "Sitio Web: %@!";
 "Address" = "📍 Dirección";
 "Street" = "Calle: %@!";
 "Suite" = "Suite: %@!";
