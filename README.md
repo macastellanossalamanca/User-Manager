@@ -5,6 +5,10 @@ User Manager is an iOS application developed as part of a technical test. It all
 
 ## Video of app running
 
+
+https://github.com/user-attachments/assets/2cec3b5f-567b-4031-a014-d6c3b5e32885
+
+
 ## 🛠️ Tech Stack
 - **Language:** Swift
 - **Architecture:** MVVM + Coordinator
@@ -16,6 +20,7 @@ User Manager is an iOS application developed as part of a technical test. It all
 - **Error Handling:** Custom error management
 - **Supported Versions:** iOS 15 and above
 - **Multi-language support:** English and Spanish
+- **It uses Logs in order to show in console what is happening while running the app
 
 ## 🌐 API Integration
 The app retrieves the user list from the following endpoint:
@@ -56,26 +61,4 @@ The app retrieves the user list from the following endpoint:
 - Requests permission to access location.
 - Captures location even when the app is in the background.
 - Button to obtain the current location while creating a new user.
-
-## 📝 Installation
-1. Clone the repository:
-2. Open the project:
-3. Run the project on your preferred iOS simulator or device.
-
-## ⚙️ Configuration
-- Ensure Realm and Alamofire are correctly installed.
-
-## 💡 Known Issues
-- Location permissions must be granted to use the location capture feature.
-
-## ✨ Future Improvements
-- Add more comprehensive unit tests for edge cases.
-- Improve error handling with more descriptive messages.
-- Implement a more robust offline mode.
-
-## 🤝 Contribution
-Feel free to open issues or make pull requests to improve the project!
-
-## 📝 License
-This project is licensed under the MIT License.
 
