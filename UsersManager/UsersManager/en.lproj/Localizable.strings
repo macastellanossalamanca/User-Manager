@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  UsersManager
+
+  Created by Sandra Salamanca on 29/03/25.
+  
+*/
+
+"Users" = "List of Users";
+"save_changes" = "Save Changes";
+"Cancel" = "Cancel";
+"Phone" = "Phone Number: %@!";
+"Email" = "Email: %@!";
+"EmailPlaceHolder" = "Email";
+"City" = "City: %@!";
+"Add" = "Add";
+"Name" = "Name";
+"PhonePlaceHolder" = "Phone";
+"Latitude" = "Latitude: %@!";
+"Longitude" = "Longitude: %@!";
+"GetLocation" = "Get Location";
+"AddUser" = "Add User";
+"EmptyNameError" = "⚠️ Name field can not be empty.";
+"InvalidEmailError" = "⚠️ Invalid Email";
+"User" = "User: %@!";
+"Web" = "Web Site: %@!";
+"Address" = "📍 Address";
+"Street" = "Street: %@!";
+"Suite" = "Suite: %@!";
+"Postal Code" = "Postal Code: %@!";
+"Company" = "🏢 Company";
+"CompoundName" = "Name: %@!";
+"Phrase" = "Phrase: %@!";
+"BS" = "BS: %@!";
