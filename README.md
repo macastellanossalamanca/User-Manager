@@ -20,7 +20,7 @@ https://github.com/user-attachments/assets/2cec3b5f-567b-4031-a014-d6c3b5e32885
 - **Error Handling:** Custom error management
 - **Supported Versions:** iOS 15 and above
 - **Multi-language support:** English and Spanish
-- **It uses Logs in order to show in console what is happening while running the app
+- **It uses Logs:** in order to show in console what is happening while running the app
 
 ## 🌐 API Integration
 The app retrieves the user list from the following endpoint:
